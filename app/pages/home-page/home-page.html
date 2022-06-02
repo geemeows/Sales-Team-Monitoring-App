@@ -1,7 +1,15 @@
 <div class="c-dashboard">
-  <div class="c-filters__container">[Place search component here]</div>
+  <div class="c-filters__container">
+    <v-table-filter
+      v-props-filter-str="homePageVm.getQueryParam()"
+      v-on-update-filter="homePageVm.handleFilterChange"
+    />
+  </div>
 
-  <employees-list employees-list="homePageVm.employees"></employees-list>
+  <employees-list
+    employees-list="homePageVm.employees"
+    filter-str="homePageVm.getQueryParam()"
+  ></employees-list>
 
   <div class="c-dashboard__footer">
     <div ng-show="homePageVm.isLoading" class="c-loader"></div>

@@ -4,6 +4,7 @@ angular.module('appModule').component('employeesList', {
   controllerAs: 'EmployeesListComponentVm',
   bindings: {
     employeesList: '<',
+    filterStr: '<', // < indicates one-way binding
   },
 });
 

@@ -1,0 +1,21 @@
+.c-filter {
+  margin: 8px 16px;
+  display: flex;
+  justify-content: center;
+
+  .c-filter__input {
+    height: 40px;
+    border-radius: 4px;
+    padding: 0 16px;
+    margin: 0 2px;
+  }
+  .c-filter__button {
+    height: 40px;
+    background-color: #0099ff;
+    color: white;
+    min-width: 120px;
+    padding: 0 16px;
+    border-radius: 4px;
+    margin: 0 2px;
+  }
+}
