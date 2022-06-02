@@ -18,13 +18,21 @@
           ng-src="{{employee.profile.avatar}}"
           ng-attr-alt="{{employee.profile.name}}"
         />
-        <div>{{ employee.profile.name }}</div>
+        <div
+          ng-bind-html="employee.profile.name | highlight:EmployeesListComponentVm.filterStr"
+        ></div>
       </div>
     </div>
-    <div>{{ employee.email }}</div>
-    <div>{{ employee.profile.address }}</div>
+    <div
+      ng-bind-html="employee.email | highlight:EmployeesListComponentVm.filterStr"
+    ></div>
+    <div
+      ng-bind-html="employee.profile.address | highlight:EmployeesListComponentVm.filterStr"
+    ></div>
     <div>{{ employee.start_date | date }}</div>
     <div>{{ employee.performance_index }}</div>
-    <div>{{ employee.profile.about }}</div>
+    <div
+      ng-bind-html="employee.profile.about | highlight:EmployeesListComponentVm.filterStr"
+    ></div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 angular.module('appModule').controller('homeController', homePageController);
 
-function homePageController(Employees) {
+function homePageController(Employees, $scope, $location) {
   const homePageVm = this;
   homePageVm.employees = [];
   homePageVm.currentPage = 1;
@@ -46,4 +46,14 @@ function homePageController(Employees) {
   function setIsPartTime() {
     homePageVm.isPartTime = !homePageVm.isPartTime;
   }
+  homePageVm.getQueryParam = function () {
+    return $location.search().filter;
+  };
+  homePageVm.handleFilterChange = function (value) {
+    if (value) {
+      $location.path('/').search({ filter: value });
+    } else {
+      $location.path('/').search({});
+    }
+  };
 }
