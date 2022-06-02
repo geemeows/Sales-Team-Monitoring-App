@@ -1,4 +1,5 @@
-angular.module('appModule')
+angular
+  .module('appModule')
   .config(($locationProvider) => {
     $locationProvider.html5Mode({
       enabled: true,

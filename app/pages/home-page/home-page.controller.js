@@ -1,6 +1,4 @@
-angular
-  .module('appModule')
-  .controller('homeController', homePageController);
+angular.module('appModule').controller('homeController', homePageController);
 
 function homePageController(Employees) {
   const homePageVm = this;
@@ -9,9 +7,8 @@ function homePageController(Employees) {
   activate();
 
   function activate() {
-    Employees.getEmployees()
-      .then(({ data }) => {
-        homePageVm.employees = homePageVm.employees.concat(data.employees);
-      });
+    Employees.getEmployees().then(({ data }) => {
+      homePageVm.employees = homePageVm.employees.concat(data.employees);
+    });
   }
 }

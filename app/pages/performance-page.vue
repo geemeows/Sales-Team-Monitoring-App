@@ -1,8 +1,6 @@
 <template>
   <div class="c-dashboard">
-    <div class="c-filters__container">
-      [Place filter component here]
-    </div>
+    <div class="c-filters__container">[Place filter component here]</div>
     <div class="c-dashboard__header">
       <performance-chart-component />
     </div>
