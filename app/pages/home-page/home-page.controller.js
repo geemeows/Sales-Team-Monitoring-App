@@ -6,7 +6,7 @@ function homePageController(Employees) {
   homePageVm.employees = [];
   homePageVm.currentPage = 1;
   homePageVm.totalPages = 0;
-  homePageVm.isPartTime = true;
+  homePageVm.isPartTime = false;
   homePageVm.isLoading = false;
 
   activate();
