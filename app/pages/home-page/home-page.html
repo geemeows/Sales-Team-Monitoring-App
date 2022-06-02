@@ -4,6 +4,13 @@
   <employees-list employees-list="homePageVm.employees"></employees-list>
 
   <div class="c-dashboard__footer">
-    <button class="c-button">Load More</button>
+    <div ng-show="homePageVm.isLoading" class="c-loader"></div>
+    <button
+      ng-show="!homePageVm.isLoading"
+      class="c-button"
+      ng-click="homePageVm.loadMore()"
+    >
+      Load More
+    </button>
   </div>
 </div>
