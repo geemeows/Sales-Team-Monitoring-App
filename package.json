@@ -21,6 +21,7 @@
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-vue": "^9.1.0",
     "eslint-webpack-plugin": "^3.1.1",
     "extract-loader": "^3.1.0",
     "file-loader": "^6.0.0",
@@ -31,6 +32,7 @@
     "husky": "^8.0.1",
     "imports-loader": "^0.8.0",
     "jest": "^27.4.7",
+    "lint-staged": "^13.0.0",
     "node-sass": "^7.0.1",
     "prettier": "2.6.2",
     "sass-loader": "^12.4.0",
@@ -43,15 +45,22 @@
     "webpack-merge": "^5.8.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "start": "webpack serve --config webpack.dev.js --open --progress",
     "build": "webpack --config webpack.prod.js",
     "lint:prettier": "prettier --check .",
-    "lint:eslint": "eslint \"**/*.js\"",
-    "format": "prettier --write . && eslint \"**/*.js\" --fix"
+    "lint:eslint": "eslint \"**/*.{js,vue}\"",
+    "format": "prettier --single-quote --write . && eslint \"**/*.js\" --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && git add ."
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,,vue}": [
+      "yarn format",
+      "git add -A ."
+    ]
   }
 }

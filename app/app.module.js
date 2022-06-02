@@ -10,7 +10,7 @@ angular
   .module('appModule')
   .directive('vPerformancePage', (createVueComponent) => {
     return createVueComponent(
-      Vue.component('performancePageComponent', PerformancePageComponent)
+      Vue.component('PerformancePageComponent', PerformancePageComponent)
     );
   });
 
@@ -18,6 +18,6 @@ angular
   .module('appModule')
   .directive('vPerformanceChart', (createVueComponent) => {
     return createVueComponent(
-      Vue.component('performanceChartComponent', PerformanceChartComponent)
+      Vue.component('PerformanceChartComponent', PerformanceChartComponent)
     );
   });
