@@ -19,7 +19,8 @@ import {
   VisualMapComponent,
 } from 'echarts/components';
 import VChart from 'vue-echarts';
-import { GETTERS } from '../../constants/performance.vuex';
+import { GETTERS, ACTIONS } from '../../constants/performance.vuex';
+import { filterDates } from '../../utils/helpers';
 
 use([
   CanvasRenderer,
@@ -36,44 +37,54 @@ export default {
   components: {
     VChart,
   },
-
+  props: {
+    dates: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      chartData: [
-        {
-          date_ms: 1641772800000,
-          performance: 0.2,
-        },
-        {
-          date_ms: 1641859200000,
-          performance: 0.33,
-        },
-        {
-          date_ms: 1641945600000,
-          performance: 0.53,
-        },
-        {
-          date_ms: 1642032000000,
-          performance: 0.31,
-        },
-        {
-          date_ms: 1642118400000,
-          performance: 0.65,
-        },
-        {
-          date_ms: 1642204800000,
-          performance: 0.88,
-        },
-        {
-          date_ms: 1642291200000,
-          performance: 0.07,
-        },
-      ],
+      // chartData: [
+      //   {
+      //     date_ms: new Date(1641772800000),
+      //     performance: 0.2,
+      //   },
+      //   {
+      //     date_ms: new Date(1641859200000),
+      //     performance: 0.33,
+      //   },
+      //   {
+      //     date_ms: new Date(1641945600000),
+      //     performance: 0.53,
+      //   },
+      //   {
+      //     date_ms: new Date(1642032000000),
+      //     performance: 0.31,
+      //   },
+      //   {
+      //     date_ms: new Date(1642118400000),
+      //     performance: 0.65,
+      //   },
+      //   {
+      //     date_ms: new Date(1642204800000),
+      //     performance: 0.88,
+      //   },
+      //   {
+      //     date_ms: new Date(1642291200000),
+      //     performance: 0.07,
+      //   },
+      // ],
     };
   },
 
   computed: {
-    getChartData() {
+    originalChartData() {
+      return this.$store.getters[
+        `performance/${GETTERS.GET_ORIGINAL_PERFORMANCE_DATASET}`
+      ];
+    },
+    chartData() {
       return this.$store.getters[
         `performance/${GETTERS.GET_PERFORMANCE_DATASET}`
       ];
@@ -140,15 +151,25 @@ export default {
     },
 
     xAxisData() {
-      return this.getChartData.map((item) => this.formatDate(item.date_ms));
+      return this.chartData.map((item) => this.formatDate(item.date_ms));
     },
 
     yAxisData() {
-      return this.getChartData.map((item) => +item.performance * 100);
+      return this.chartData.map((item) => +item.performance * 100);
+    },
+  },
+  watch: {
+    dates: {
+      handler(newDates) {
+        this.$store.dispatch(
+          `performance/${ACTIONS.FILTER_PERFORMANCE_DATA}`,
+          filterDates(newDates, this.originalChartData)
+        );
+      },
     },
   },
   created() {
-    this.$store.dispatch('performance/FETCH_PERFORMANCE_DATA');
+    this.$store.dispatch(`performance/${ACTIONS.FETCH_PERFORMANCE_DATA}`);
   },
 
   methods: {

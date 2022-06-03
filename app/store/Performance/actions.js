@@ -7,4 +7,7 @@ export default {
       commit(MUTATIONS.SET_PERFORMANCE_DATASET, data);
     });
   },
+  [ACTIONS.FILTER_PERFORMANCE_DATA]: ({ commit }, dataset) => {
+    commit(MUTATIONS.SET_FILTERED_PERFORMANCE_DATASET, dataset);
+  },
 };
