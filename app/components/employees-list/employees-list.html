@@ -23,9 +23,7 @@
         ></div>
       </div>
     </div>
-    <div
-      ng-bind-html="employee.email | highlight:EmployeesListComponentVm.filterStr"
-    ></div>
+    <div>{{ employee.email }}</div>
     <div
       ng-bind-html="employee.profile.address | highlight:EmployeesListComponentVm.filterStr"
     ></div>
