@@ -6,7 +6,15 @@ import PerformanceChartComponent from './components/vue-components/performance-c
 import TableFilterComponent from './components/vue-components/TableFilter.vue';
 import angular from 'angular';
 
-angular.module('appModule', ['ui.router', 'ngVue', 'ngVue.plugins']);
+import store from './store';
+
+angular
+  .module('appModule', ['ui.router', 'ngVue', 'ngVue.plugins'])
+  .config(($ngVueProvider) => {
+    $ngVueProvider.setRootVueInstanceProps({
+      store: store,
+    });
+  });
 
 angular.module('appModule').filter('highlight', function ($sce) {
   return function (text, searchStr) {

@@ -19,6 +19,7 @@ import {
   VisualMapComponent,
 } from 'echarts/components';
 import VChart from 'vue-echarts';
+import { GETTERS } from '../../constants/performance.vuex';
 
 use([
   CanvasRenderer,
@@ -72,6 +73,11 @@ export default {
   },
 
   computed: {
+    getChartData() {
+      return this.$store.getters[
+        `performance/${GETTERS.GET_PERFORMANCE_DATASET}`
+      ];
+    },
     initOptions() {
       return {
         width: 'auto',
@@ -134,12 +140,15 @@ export default {
     },
 
     xAxisData() {
-      return this.chartData.map((item) => this.formatDate(item.date_ms));
+      return this.getChartData.map((item) => this.formatDate(item.date_ms));
     },
 
     yAxisData() {
-      return this.chartData.map((item) => +item.performance * 100);
+      return this.getChartData.map((item) => +item.performance * 100);
     },
+  },
+  created() {
+    this.$store.dispatch('performance/FETCH_PERFORMANCE_DATA');
   },
 
   methods: {
