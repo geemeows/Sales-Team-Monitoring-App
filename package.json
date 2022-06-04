@@ -56,7 +56,7 @@
     "build": "webpack --config webpack.prod.js",
     "start:build": "http-server ./dist -p 8080",
     "test:unit": "jest",
-    "test:e2e": "cypress open",
+    "test:e2e": "cypress open --config-file=cypress.config.js",
     "lint:prettier": "prettier --check .",
     "lint:eslint": "eslint \"**/*.{js,vue}\"",
     "format": "prettier --single-quote --write . && eslint \"**/*.js\" --fix"
