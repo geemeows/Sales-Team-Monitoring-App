@@ -2,6 +2,7 @@ import Vue from 'vue';
 import 'ngVue';
 import 'ngVue/build/plugins.js';
 import PerformancePageComponent from './pages/performance-page.vue';
+import NotFoundPageComponent from './pages/NotFound.vue';
 import PerformanceChartComponent from './components/vue-components/performance-chart.vue';
 import TableFilterComponent from './components/vue-components/TableFilter.vue';
 import angular from 'angular';
@@ -35,6 +36,12 @@ angular
       Vue.component('PerformancePageComponent', PerformancePageComponent)
     );
   });
+
+angular.module('appModule').directive('vNotFoundPage', (createVueComponent) => {
+  return createVueComponent(
+    Vue.component('NotFoundPageComponent', NotFoundPageComponent)
+  );
+});
 
 angular
   .module('appModule')

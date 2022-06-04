@@ -1,0 +1,42 @@
+.c-not-found {
+  .c-not-found__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 0 30px;
+    .c-not-found__info {
+      .c-not-found__title {
+        font-size: 125px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #001529;
+      }
+      .c-not-found__content {
+        display: flex;
+        flex-direction: column;
+        .c-not-found__description {
+          font-size: 30px;
+        }
+        .c-not-found__code {
+          display: block;
+          margin-top: 10px;
+          font-weight: 700;
+          color: #001529;
+        }
+        .c-not-found__link {
+          color: #001529;
+          margin-top: 10px;
+          font-weight: 700;
+          text-decoration: underline;
+          margin-right: 10px;
+        }
+      }
+    }
+    .c-not-found__image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
