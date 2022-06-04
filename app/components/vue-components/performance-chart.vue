@@ -43,41 +43,6 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      // chartData: [
-      //   {
-      //     date_ms: new Date(1641772800000),
-      //     performance: 0.2,
-      //   },
-      //   {
-      //     date_ms: new Date(1641859200000),
-      //     performance: 0.33,
-      //   },
-      //   {
-      //     date_ms: new Date(1641945600000),
-      //     performance: 0.53,
-      //   },
-      //   {
-      //     date_ms: new Date(1642032000000),
-      //     performance: 0.31,
-      //   },
-      //   {
-      //     date_ms: new Date(1642118400000),
-      //     performance: 0.65,
-      //   },
-      //   {
-      //     date_ms: new Date(1642204800000),
-      //     performance: 0.88,
-      //   },
-      //   {
-      //     date_ms: new Date(1642291200000),
-      //     performance: 0.07,
-      //   },
-      // ],
-    };
-  },
-
   computed: {
     originalChartData() {
       return this.$store.getters[
@@ -102,12 +67,48 @@ export default {
           text: 'Team Performance Index',
           left: 'center',
         },
+        visualMap: [
+          {
+            type: 'piecewise',
+            top: 50,
+            right: 10,
+            pieces: [
+              {
+                min: 0,
+                max: 50,
+                label: '0 - 50',
+                color: '#F4664C',
+              },
+              {
+                min: 50,
+                max: 80,
+                label: '50 - 80',
+                color: '#FBDC0D',
+              },
+              {
+                min: 80,
+                max: 100,
+                label: '80 - 100',
+                color: '#03974E',
+              },
+            ],
+          },
+        ],
         tooltip: {
           trigger: 'axis',
           transitionDuration: 0,
           confine: false,
           hideDelay: 0,
-          padding: 0,
+          padding: [5, 10],
+          backgroundColor: '#17253F',
+          formatter: ([{ name, value, marker }]) => `
+            <div class="c-chart__tooltip">
+              <span class="c-chart__tooltip-title">${name}</span>
+              <span class="c-chart__tooltip-content">
+                ${marker}&nbsp;Team Performance Index: ${value}%
+              </span>
+            </div>
+          `,
         },
         grid: {
           left: '30px',
