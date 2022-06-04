@@ -1,5 +1,9 @@
 {
-  "extends": ["airbnb-base/legacy", "plugin:vue/recommended"],
+  "extends": [
+    "airbnb-base/legacy",
+    "plugin:vue/recommended",
+    "plugin:cypress/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
