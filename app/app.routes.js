@@ -18,5 +18,10 @@ angular
         name: 'team-performance',
         url: '/team-performance',
         template: '<v-performance-page></v-performance-page>',
+      })
+      .state('otherwise', {
+        name: 'not-found',
+        url: '*path',
+        template: '<v-not-found-page />',
       });
   });
