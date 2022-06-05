@@ -18,10 +18,10 @@ jobs:
         run: yarn test:unit
       - name: Generate build
         run: yarn build
-      - name: Run E2E tests
-        uses: cypress-io/github-action@v2
-        with:
-          start: yarn start:build
+      # - name: Run E2E tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     start: yarn start:build
       # Share artifact inside workflow
       - name: Share artifact inside workflow
         uses: actions/upload-artifact@v1
@@ -41,6 +41,11 @@ jobs:
       - name: Deploy to S3
         uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET_NAME }}/dist
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/dist/index.html"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
