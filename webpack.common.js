@@ -73,11 +73,11 @@ module.exports = {
       // https://vue-loader.vuejs.org/guide/pre-processors.html
       // this will apply to both plain `.scss` files
       // AND `<style lang="scss">` blocks in `.vue` files
-      {
-        test: /\.scss$/,
-        include: [/vue-components|views/],
-        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
-      },
+      // {
+      //   test: /\.scss$/,
+      //   include: [/vue-components|views/],
+      //   use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      // },
     ],
   },
   plugins: [
